@@ -1,0 +1,16 @@
+﻿name: lambda26-pyspark
+services:
+  spark-engine:
+    container_name: lambda26-pyspark-container
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "4488:8888"
+      - "4040:4040"
+    volumes:
+      - ./notebooks:/opt/notebooks
+      - ../data:/opt/data
+      - ./artifacts:/opt/artifacts
+    environment:
+      - JUPYTER_TOKEN=sintoken
