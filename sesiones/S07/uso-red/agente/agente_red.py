@@ -10,7 +10,7 @@ import psutil
 
 
 # El agente corre en Windows (fuera de Docker): Docker Desktop no ve las NIC
-# físicas del host, solo su propia red virtual.
+# físicas del host, solo su propia red interna.
 MQTT_HOST = os.getenv("MQTT_HOST", "localhost")
 MQTT_PORT = int(os.getenv("MQTT_PORT", "41883"))
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "lambda26/red/llsw3/telemetria")
@@ -21,8 +21,7 @@ EXCLUIDAS = ("loopback", "teredo", "isatap")
 
 
 def adaptadores_virtuales():
-    # Windows sabe qué adaptador es hardware real (Get-NetAdapter -> Virtual);
-    # el nombre no basta: "Ethernet 3" puede ser un adaptador de VirtualBox.
+    # El tipo de cada interfaz se toma de Windows (Get-NetAdapter), no del nombre.
     try:
         salida = subprocess.run(
             ["powershell", "-NoProfile", "-Command",

@@ -9,7 +9,7 @@ con validación de esquema y de rango físico.
 
 ```text
 NIC física (Ethernet) ─┐
-NIC virtuales ─────────┤  agente/agente_red.py   (Windows, fuera de Docker)
+otras NIC activas ─────┤  agente/agente_red.py   (Windows, fuera de Docker)
                        ▼  MQTT  lambda26/red/llsw3/telemetria
                mosquitto (contenedor, puerto 41883 del host)
                        ▼
@@ -19,7 +19,7 @@ NIC virtuales ─────────┤  agente/agente_red.py   (Windows, f
 ```
 
 El agente corre en Windows y no en un contenedor porque Docker Desktop no ve
-las NIC físicas del host, solo su red virtual.
+las NIC físicas del host, solo su propia red interna.
 
 ## Uso
 
