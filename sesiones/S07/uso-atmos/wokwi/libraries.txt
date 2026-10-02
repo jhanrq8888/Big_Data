@@ -1,0 +1,3 @@
+PubSubClient
+DHT sensor library
+ArduinoJson@6.21.5
